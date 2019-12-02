@@ -1,0 +1,40 @@
+Flowers App:
+    Objective:
+        All plants are different aside from the fact that they need CO2, water, and sunshine to survive. 
+        What affects the amount a plant needs is determined entirely by the climate. 
+        Cacti need minimal water and can stand the heat, while aloe vera needs cooler temperatures and more water.
+        This website will help you identify what plants will grow best in the climate that you are in and the time of year.
+
+    User Story:
+        1a) Register:
+                Inputs:
+                    Email
+                    Password
+                Redirects:
+                    Homepage
+
+        1b) Login:
+                Inputs: 
+                    Email
+                    Password
+                Redirects:
+                    Homepage
+            
+        2) Homepage:
+            Location
+                Climate Type
+            Current date and time
+            Saved plants (Stretch?)
+                Last time watered
+                When bought/planted
+
+        3) Explore:
+            See all the different plants
+
+        4) Compositing: (Stretch)
+            What it is
+            How to do it
+
+        Models:
+            Users
+            
