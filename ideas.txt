@@ -1,3 +1,71 @@
+Medicine App:
+    Objective:
+        Perscribed drugs are a very common form of health in modern times.
+        There are so many types of drugs that have similar effects but different names, 
+        and it can make it hard to keep track of what everything does.
+        The purpose of this app will be to let non-logged viewers look up drug names to see their effects and side-effects.
+        For logged users, they will be abe to do the above, but also save what drugs they are currently taking,
+        make note of when they should take their next does, and give reminders on when to start going for a refill (5-7 days before out based on quantity and dose amount).
+    
+    API's:
+        https://open.fda.gov/apis/drug/
+            To obtain all drug information
+            - Brand/Drug information are in the open FDA object 
+        https://www.twilio.com/docs/usage/api (stretch)
+            For sendng out notifications
+
+    Color Scheme: 
+        Main color: #669ad4
+        Harmony: Split complementry
+        https://www.sessions.edu/color-calculator/
+
+    Pages:
+        Search (Don't need to be logged in):
+            - Can look up drug names
+            - Find out more information on selected drug
+            - Semantic Card with:
+                    - Drug name
+                    - Purpose (?)
+                    - Save medicine (if logged in)
+        Register (modal):
+            Inputs:
+                Email
+                Password
+            Redirects:
+                Homepage
+        Login (modal):
+            Inputs: 
+                Email
+                Password
+            Redirects:
+                Homepage
+        404:
+            - Clip art Px bottle
+            - Link back to homepage
+        Landing:
+            - Date and time segment
+            - Calendar (?)
+            - Logged in:
+                - Saved medication list (Cards)
+                    - Intake amount (2 pills, 600ml, etc.)
+                    - Intake occurance (2x per day, 1 per week, etc.)
+                    - Current pill amount (Take perscription amount - dose amount)
+                    - Last time taken (press a button to update to current time)
+                    - Button to view medicine in depth
+                    - Button to unsave medicine (if someone stops taking it)
+            - Not logged in:
+                - Empty saved box for saved medicines saying to login
+        Models:
+            Users
+            Saved medicines
+            
+
+
+
+
+
+Ignore below
+
 Flowers App:
     Objective:
         All plants are different aside from the fact that they need CO2, water, and sunshine to survive. 
