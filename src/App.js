@@ -6,7 +6,8 @@ import ShowSearchResults from './ShowSearchResults'
 import NavBar from './NavBar'
 import SearchBar from './SearchBar'
 import Footer from './Footer'
-import SelectedDrug from './SelectedDrug'
+import SearchResultsPage from './SearchResultsPage'
+// import SelectedDrug from './SelectedDrug'
 
 const my404 = () => {
   return(
@@ -26,8 +27,8 @@ function App() {
         <Route exact path='/features' component= {MainContainer} />
         <Route exact path='/disclaimer' component= {MainContainer} />
         <Route exact path='/resources' component= {MainContainer} />
-        <Route path='/search/:brand_name' render={(props) => <ShowSearchResults {...props}/>} />
-        <Route path='/:brand_name' component={SelectedDrug} />
+        <Route exact path='/search/:brand_name'  render={(props) => <SearchResultsPage {...props}/>}/>
+        {/* <Route path='/:brand_name' component={SelectedDrug} /> */}
         <Route component = {my404} />
       </Switch>
       <Footer/>
@@ -35,4 +36,5 @@ function App() {
   );
 }
 
+// render={(props) => <ShowSearchResults {...props}/>}
 export default App;

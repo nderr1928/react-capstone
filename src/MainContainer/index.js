@@ -62,27 +62,27 @@ class MainContainer extends React.Component{
     //     }
 
     // }
-    getSelectedDrugInformation = async (id) => {
-        const searchResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.spl_id:${id}&limit=1`)
-        console.log('1', searchResponse)
-        if(searchResponse.status === 200){
-            const searchParsedResponse = await searchResponse.json()
-            console.log('2',searchParsedResponse.results[0])
-            const similarDrugResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.generic_name.exact:${searchParsedResponse.results[0].openfda.generic_name}&limit=5`)
-            console.log('3', similarDrugResponse)
-            if(similarDrugResponse.status === 200){
-                const similarParsedResponse = await similarDrugResponse.json()
-                console.log('4', similarParsedResponse.results)
-                this.setState({
-                    selectedDrug: searchParsedResponse.results[0],
-                    noResults: false,
-                    showResults: false,
-                    showDrugInfo: true,
-                    similarDrugs: similarParsedResponse.results
-                })
-            }
-        }
-    }
+    // getSelectedDrugInformation = async (id) => {
+    //     const searchResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.spl_id:${id}&limit=1`)
+    //     console.log('1', searchResponse)
+    //     if(searchResponse.status === 200){
+    //         const searchParsedResponse = await searchResponse.json()
+    //         console.log('2',searchParsedResponse.results[0])
+    //         const similarDrugResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.generic_name.exact:${searchParsedResponse.results[0].openfda.generic_name}&limit=5`)
+    //         console.log('3', similarDrugResponse)
+    //         if(similarDrugResponse.status === 200){
+    //             const similarParsedResponse = await similarDrugResponse.json()
+    //             console.log('4', similarParsedResponse.results)
+    //             this.setState({
+    //                 selectedDrug: searchParsedResponse.results[0],
+    //                 noResults: false,
+    //                 showResults: false,
+    //                 showDrugInfo: true,
+    //                 similarDrugs: similarParsedResponse.results
+    //             })
+    //         }
+    //     }
+    // }
     render(){
         return(
             <div>
@@ -91,7 +91,7 @@ class MainContainer extends React.Component{
                 <h1>Main body</h1>
                 {/* {this.state.showResults ? <ShowSearchResults searchResults={this.state.searchResults} showDrugInformation={this.getSelectedDrugInformation} /> : null} */}
                 {this.state.noResults ? <Message>{this.state.searchResults}</Message> : null}
-                {this.state.showDrugInfo ? <SelectedDrug selectedDrug={this.state.selectedDrug} similarDrugs={this.state.similarDrugs} /> : null}
+                {/* {this.state.showDrugInfo ? <SelectedDrug selectedDrug={this.state.selectedDrug} similarDrugs={this.state.similarDrugs} /> : null} */}
                 {/* <Footer /> */}
             </div>
         )
