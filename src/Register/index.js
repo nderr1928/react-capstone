@@ -7,39 +7,13 @@ class Register extends React.Component{
         super();
         this.state = {
             email: "",
-            password: "",
-            errMsg: ''
+            password: ""
         }
     }
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
-    handleRegister = async (e) => {
-        e.preventDefault();
-        const registerUrl = `${process.env.REACT_APP_API_URL}/api/v1/users/register`;
-        const registerResponse = await fetch(registerUrl, {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const parsedResponse = await registerResponse.json();
-		console.log(parsedResponse);
-
-        if(parsedResponse.status.code === 200){
-			console.log(parsedResponse.data.id)
-			localStorage.setItem('sessionUserId', parsedResponse.data.id)
-			this.props.history.push('/home')
-        } else{
-            this.setState({
-                errMsg: parsedResponse.status.message
-            })
-            console.log(this.state.errMsg)
-        }
     }
     render(){
         return(
@@ -69,9 +43,9 @@ class Register extends React.Component{
                         value = {this.state.password}
                         onChange={this.handleChange}
                     />
-                    <Button basic color='green' type='submit' onClick={this.handleRegister}>Register</Button>
+                    <Button basic color='green' type='submit' onClick={() => this.props.handleRegister(this.state)}>Register</Button>
                 </Form>
-                {this.state.errMsg ? <Message negative>{this.state.errMsg}</Message> : null}
+                {this.props.errMsg ? <Message negative>{this.props.errMsg}</Message> : null}
             </Modal>
         )
     }

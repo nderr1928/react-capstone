@@ -7,38 +7,13 @@ class Login extends React.Component{
         super();
         this.state = {
             email: "",
-            password: "",
-            errMsg: ''
+            password: ""
         }
     }
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
-    handleLogin = async (e) => {
-        e.preventDefault();
-        const loginUrl = `${process.env.REACT_APP_API_URL}/api/v1/users/login`;
-        const loginResponse = await fetch(loginUrl, {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const parsedResponse = await loginResponse.json();
-		console.log(parsedResponse);
-
-        if(parsedResponse.status.code === 200){
-			console.log(parsedResponse.data.id)
-			localStorage.setItem('sessionUserId', parsedResponse.data.id)
-			this.props.history.push('/home')
-        } else{
-            this.setState({
-                errMsg: parsedResponse.status.message
-            })
-        }
     }
     render(){
         return(
@@ -68,9 +43,9 @@ class Login extends React.Component{
                         value = {this.state.password}
                         onChange = {this.handleChange}
                     />
-                    <Button basic color='green' type='submit' onClick={this.handleLogin}>Login</Button>
+                    <Button basic color='green' type='submit' onClick={() => this.props.handleLogin(this.state)}>Login</Button>
                 </Form>
-                {this.state.errMsg ? <Message negative>{this.state.errMsg}</Message> : null}
+                {this.props.errMsg ? <Message negative>{this.props.errMsg}</Message> : null}
             </Modal>
         )
     }

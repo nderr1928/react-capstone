@@ -59,6 +59,8 @@ Medicine App:
             Users
             Saved medicines
             
+        Resources:
+            https://www.goodrx.com/blog/brand-vs-generic-drugs-whats-the-difference/#:~:targetText=Due%20to%20trademark%20laws%2C%20generic,reflux%20disease%2C%20or%20GERD)
 
 
 

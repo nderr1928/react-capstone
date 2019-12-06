@@ -8,12 +8,26 @@ class Account extends React.Component{
         this.state = {
             email: "",
             password: "",
-            errMsg: ''
+            errMsg: null,
+            loginModal: false,
+            registerModal: false,
+            isLogged: false
         }
     }
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+    openLogin = () => {
+        this.setState({
+            loginModal: true
+        })
+    }
+    closeLogin = () => {
+        this.setState({
+            loginModal: false,
+            errMsg: null
         })
     }
     handleLogin = async (e) => {
@@ -39,6 +53,17 @@ class Account extends React.Component{
                 errMsg: parsedResponse.status.message
             })
         }
+    }
+    openRegister = () => {
+        this.setState({
+            registerModal: true
+        })
+    }
+    closeRegister = () => {
+        this.setState({
+            registerModal: false,
+            errMsg: null
+        })
     }
     handleRegister = async (e) => {
         e.preventDefault();
