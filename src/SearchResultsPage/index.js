@@ -38,7 +38,7 @@ class SearchResultPage extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <h1>Results from {this.state.searchString}</h1>
+                <h1 style={{margin: '0'}}>Results from {this.state.searchString}</h1>
                 {this.state.showResults ? <ShowSearchResults searchResults={this.state.response} /> : null}
             </React.Fragment>
         )

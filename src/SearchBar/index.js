@@ -15,24 +15,6 @@ class SearchBar extends React.Component{
             [e.target.name]: e.target.value
         })
     }
-    // searchRequest = async (searchString) => {
-    //     if(searchString !== ''){
-    //         const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
-    //         const parsedResponse = await response.json()
-    //         console.log(parsedResponse.results);
-    //         // <Redirect to={{
-    //         //     pathname: `/search/${this.state.searchString}`,
-    //         //     state: { searchResults: parsedResponse.results }
-    //         // }} />
-    //         this.props.history.push({
-    //             pathname: `/search/${this.state.searchString}`,
-    //             state: { searchResults: parsedResponse.results }
-    //         })
-    //         this.setState({
-    //             searchString: ''
-    //         })
-    //     }
-    // }
     render(){
         return(
             <div style={{width: '100%', backgroundColor: '#669ad4', height: '40px', margin: '0', border: '2px #809bbb solid', display:'flex', flexDirection: 'row', justifyContent:'space-around', alignContent: 'center'}}>

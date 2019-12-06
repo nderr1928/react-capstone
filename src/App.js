@@ -2,12 +2,12 @@ import './App.css';
 import React from 'react';
 import {Route, Switch} from 'react-router-dom'
 import MainContainer from './MainContainer'
-import ShowSearchResults from './ShowSearchResults'
+// import ShowSearchResults from './ShowSearchResults'
 import NavBar from './NavBar'
 import SearchBar from './SearchBar'
 import Footer from './Footer'
 import SearchResultsPage from './SearchResultsPage'
-// import SelectedDrug from './SelectedDrug'
+import SelectedDrugPage from './SelectedDrugPage'
 
 const my404 = () => {
   return(
@@ -28,7 +28,7 @@ function App() {
         <Route exact path='/disclaimer' component= {MainContainer} />
         <Route exact path='/resources' component= {MainContainer} />
         <Route exact path='/search/:brand_name'  render={(props) => <SearchResultsPage {...props}/>}/>
-        {/* <Route path='/:brand_name' component={SelectedDrug} /> */}
+        <Route path='/:id' component={SelectedDrugPage} />
         <Route component = {my404} />
       </Switch>
       <Footer/>
@@ -36,5 +36,4 @@ function App() {
   );
 }
 
-// render={(props) => <ShowSearchResults {...props}/>}
 export default App;

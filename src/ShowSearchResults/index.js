@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 const ShowSearchResults = (props) => {
     console.log("search result props:",props.searchResults)
@@ -8,7 +9,7 @@ const ShowSearchResults = (props) => {
     } else{
         const mappedResults = props.searchResults.map((foundResult) => {
                 return(
-                    <Card key={foundResult.id}>
+                    <Card key={foundResult.id} href={`/${foundResult.id}`}>
                         <Card.Content>
                             {foundResult.openfda.brand_name}
                         </Card.Content>
@@ -17,10 +18,8 @@ const ShowSearchResults = (props) => {
             })
         return(
             <div style={{height: '100%'}}>
-                <ul>
-                    {mappedResults}
-                    <p style={{textAlign: 'center', fontWeight: 'bold'}}>If you do not see what you need, try a more specific search</p>
-                </ul>
+                {mappedResults}
+                <p style={{textAlign: 'center', fontWeight: 'bold'}}>If you do not see what you need, try a more specific search</p>
             </div>
         )
     }

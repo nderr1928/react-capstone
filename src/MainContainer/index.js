@@ -4,7 +4,7 @@ import {Message} from 'semantic-ui-react';
 // import SearchBar from '../SearchBar'
 // import ShowSearchResults from '../ShowSearchResults'
 // import Footer from '../Footer';
-import SelectedDrug from '../SelectedDrug'
+// import SelectedDrug from '../SelectedDrug'
 
 class MainContainer extends React.Component{
     constructor(){
