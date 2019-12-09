@@ -9,11 +9,15 @@ const ShowSearchResults = (props) => {
     } else{
         const mappedResults = props.searchResults.map((foundResult) => {
                 return(
-                    <Card key={foundResult.id} href={`/${foundResult.id}`}>
-                        <Card.Content>
-                            {foundResult.openfda.brand_name}
-                        </Card.Content>
-                    </Card>
+                    <Link to={{
+                        pathname: `/${foundResult.id}`
+                    }}>
+                        <Card key={foundResult.id} centered>
+                            <Card.Content>
+                                {foundResult.openfda.brand_name}
+                            </Card.Content>
+                        </Card>
+                    </Link>
                 )
             })
         return(

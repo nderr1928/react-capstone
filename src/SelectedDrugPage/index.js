@@ -11,7 +11,8 @@ class SelectedDrugPage extends React.Component{
             result: '',
             similarDrugs: '',
             showSimilarDrugs: false,
-            showSelectedDrug: false
+            showSelectedDrug: false,
+            errMsg: ''
         }
     }
     componentDidMount = () => {
@@ -43,12 +44,10 @@ class SelectedDrugPage extends React.Component{
     }
     render(){
         return(
-            <React.Fragment>
-                <Card>
-                    {this.state.showSelectedDrug ? <SelectedDrug result={this.state.result} /> : null}
-                    {this.state.showSimilarDrugs ? <SimilarDrugs similarDrugs={this.state.similarDrugs}/> : null}
-                </Card>
-            </React.Fragment>
+            <Card centered>
+                {this.state.showSelectedDrug ? <SelectedDrug result={this.state.result} /> : null}
+                {this.state.showSimilarDrugs ? <SimilarDrugs similarDrugs={this.state.similarDrugs}/> : null}
+            </Card>
         )
     }
 }

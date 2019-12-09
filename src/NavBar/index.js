@@ -42,7 +42,7 @@ class NavBar extends React.Component{
 
         if(parsedResponse.status.code === 200){
 			console.log(parsedResponse.data.id)
-            localStorage.setItem('sessionUserId', parsedResponse.data.id)
+            sessionStorage.setItem('sessionUserId', parsedResponse.data.id)
             this.setState({
                 errMsg: '',
                 isLogged: true
@@ -80,7 +80,7 @@ class NavBar extends React.Component{
 
         if(parsedResponse.status.code === 201){
 			console.log(parsedResponse.data.id)
-			localStorage.setItem('sessionUserId', parsedResponse.data.id)
+			sessionStorage.setItem('sessionUserId', parsedResponse.data.id)
             this.setState({
                 errMsg: '',
                 isLogged: true
@@ -94,7 +94,7 @@ class NavBar extends React.Component{
         }
     }
     handleLogout = async () => {
-        localStorage.setItem('sessionUserId', null)
+        sessionStorage.setItem('sessionUserId', null)
         this.setState({
             isLogged: false
         })
