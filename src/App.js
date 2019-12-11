@@ -115,7 +115,7 @@ class App extends React.Component{
         }
 	}
 	handleLogout = async () => {
-        sessionStorage.setItem('sessionUserId', null)
+        sessionStorage.removeItem('sessionUserId')
         // const logoutUser = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/logout`)
         this.setState({
 			isLogged: false,
