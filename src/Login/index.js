@@ -20,7 +20,7 @@ class Login extends React.Component{
             <Modal open = {this.props.open} dimmer style={{width: '80vw', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignContent: 'space-around'}}>
                 <Header>
                     <h1 style={{textAlign: 'center', display: 'inline'}}>Login</h1>
-                    <Button icon='close' onClick={this.props.closeLogin} negative circular style={{padding: '0', margin: 'auto 2px', height: '100%'}} float='right'></Button>
+                    <Button icon='close' onClick={this.props.closeLogin} negative circular style={{padding: '0', margin: 'auto 2px', height: '100%'}} floated='right'></Button>
                 </Header>
                 <Form style={{width: '100%'}}>
                     <Form.Input

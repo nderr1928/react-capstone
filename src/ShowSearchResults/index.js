@@ -3,17 +3,21 @@ import {Card} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 const ShowSearchResults = (props) => {
-    console.log("search result props:",props.searchResults)
+    // console.log("search result props:",props.searchResults)
     if(typeof(props.searchResults) === 'string'){
         return ''
     } else{
         const mappedResults = props.searchResults.map((foundResult) => {
                 return(
-                    <Card key={foundResult.id} href={`/${foundResult.id}`}>
-                        <Card.Content>
-                            {foundResult.openfda.brand_name}
-                        </Card.Content>
-                    </Card>
+                    <Link key={foundResult.openfda.spl_id}  to={{
+                        pathname: `/${foundResult.id}`
+                    }}>
+                        <Card centered>
+                            <Card.Content>
+                                {foundResult.openfda.brand_name}
+                            </Card.Content>
+                        </Card>
+                    </Link>
                 )
             })
         return(

@@ -12,14 +12,14 @@ class SearchResultPage extends React.Component{
     }
     componentDidMount = () => {
         this.searchRequest(this.state.searchString)
-        console.log('search querry:',this.state.searchString)
+        // console.log('search querry:',this.state.searchString)
     }
     searchRequest = async (searchString) => {
         try{
             if(searchString !== ''){
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
                 const parsedResponse = await response.json()
-                console.log('function', parsedResponse.results)
+                // console.log('function', parsedResponse.results)
                 this.setState({
                     response: parsedResponse.results,
                     showResults: true
@@ -29,10 +29,10 @@ class SearchResultPage extends React.Component{
                 this.setState({
                     response: 'Cannot search an empty field'
                 })
-                console.log('search result:', this.state.response)
+                // console.log('search result:', this.state.response)
             }
         } catch(err){
-            console.log(err)
+            // console.log(err)
         }
     }
     render(){

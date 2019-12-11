@@ -20,7 +20,7 @@ class Register extends React.Component{
             <Modal open = {this.props.open} dimmer style={{width: '80vw', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignContent: 'space-around'}}>
                 <Header>
                     <h1 style={{textAlign: 'center', display: 'inline'}}>Register</h1>
-                    <Button icon='close' onClick={this.props.closeRegister} negative circular style={{padding: '0', margin: 'auto 2px'}} float='right'></Button>
+                    <Button icon='close' onClick={this.props.closeRegister} negative circular style={{padding: '0', margin: 'auto 2px'}} floated='right'></Button>
                 </Header>
                 <Form style={{width: '100%'}}>
                     <Form.Input
