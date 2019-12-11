@@ -17,11 +17,7 @@ class SearchResultPage extends React.Component{
     searchRequest = async (searchString) => {
         try{
             if(searchString !== ''){
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`, {
-                    header:{
-                        'Content-type': 'application/json'
-                    }
-                })
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
                 const parsedResponse = await response.json()
                 // console.log('function', parsedResponse.results)
                 this.setState({
