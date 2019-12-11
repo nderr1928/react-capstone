@@ -27,26 +27,31 @@ class MainContainer extends React.Component{
         this.getSavedMedicines()
     }
     getSavedMedicines = async () => {
-        try{
-            const medicinesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/`, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-            const parsedResponse = await medicinesResponse.json()
-            // console.log(parsedResponse.data)
-            this.setState({
-                medicines: parsedResponse.data,
-                showSavedMedicine: true
-            })
-        } catch(err){
-            // console.log(err)
-            this.setState({
-                medicines: 'Must be logged in to use this feature'
-            })
+        if(this.state.isLogged){
+            try{
+                const medicinesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/${sessionStorage.getItem('sessionUserId')}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                const parsedResponse = await medicinesResponse.json()
+                // console.log(parsedResponse.data)
+                this.setState({
+                    medicines: parsedResponse.data,
+                    showSavedMedicine: true
+                })
+            } catch(err){
+                // console.log(err)
+                this.setState({
+                    medicines: 'Must be logged in to use this feature'
+                })
+            }
+        } else{
+            return 'no user logged'
         }
+
     }
     deleteMedicine = async (id) => {
         const deleteMedicineResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/${id}/`, {
