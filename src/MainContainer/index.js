@@ -27,7 +27,7 @@ class MainContainer extends React.Component{
         this.getSavedMedicines()
     }
     getSavedMedicines = async () => {
-        if(this.state.isLogged){
+        if(sessionStorage.getItem('sessionUserId')){
             try{
                 const medicinesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/${sessionStorage.getItem('sessionUserId')}`, {
                     method: 'GET',
@@ -51,7 +51,6 @@ class MainContainer extends React.Component{
         } else{
             return 'no user logged'
         }
-
     }
     deleteMedicine = async (id) => {
         const deleteMedicineResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/${id}/`, {
