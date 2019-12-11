@@ -1,98 +1,125 @@
 import React from 'react';
-import {Message} from 'semantic-ui-react';
-// import NavBar from '../NavBar';
-// import SearchBar from '../SearchBar'
-// import ShowSearchResults from '../ShowSearchResults'
-// import Footer from '../Footer';
-// import SelectedDrug from '../SelectedDrug'
+import {Card, Header} from 'semantic-ui-react';
+import ShowSavedMedication from '../ShowSavedMedication';
+import EditSavedMedicineForm from '../EditSavedMedicineForm'
 
 class MainContainer extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            searchResults: '',
-            showResults: false,
-            noResults: false,
-            selectedDrug: '',
-            showDrugInfo: false,
-            similarDrugs: ''
+            medicines: [],
+            showSavedMedicine: false,
+            isLogged: this.props.isLogged,
+            editModal: false,
+            medicineToEdit: {
+                brand_name: '',
+                drug_id: '',
+                dosage: '',
+                dosage_unit: '',
+                refill_needed: '',
+                frequency_value: '',
+                frequency_unit: ''
+            }
         }
     }
-    // componentDidMount = () => {
-        
-    // }
-    // searchRequest = async (searchString) => {
-    //     if(searchString !== ''){
-    //         try{
-    //             const response = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.brand_name:${searchString}&limit=100`)
-    //             if(response.status === 200){
-    //                 const parsedResponse = await response.json()
-    //                 const responseResult = parsedResponse.results
-    //                 console.log(responseResult)
-    //                 this.setState({
-    //                     searchResults: responseResult,
-    //                     noResults: false,
-    //                     showResults: true,
-    //                     showDrugInfo: false
-    //                 })
-    //             } else{
-    //                 this.setState({
-    //                     searchResults: `No results found for ${searchString}`,
-    //                     showResults: false,
-    //                     noResults: true,
-    //                     showDrugInfo: false
-    //                 })
-    //             }
-    //         } catch(err){
-    //             console.log(err);
-    //         }
-    //     }
-    // }
-    // searchRequest = async (searchString) => {
-    //     if(searchString !== ''){
-    //         const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
-    //         const parsedResponse = await response.json()
-    //         console.log(parsedResponse.results)
-    //         this.setState({
-    //             searchResults: parsedResponse.results,
-    //             noResults: false,
-    //             showResults: true,
-    //             showDrugInfo: false
-    //         })
-    //     }
-
-    // }
-    // getSelectedDrugInformation = async (id) => {
-    //     const searchResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.spl_id:${id}&limit=1`)
-    //     console.log('1', searchResponse)
-    //     if(searchResponse.status === 200){
-    //         const searchParsedResponse = await searchResponse.json()
-    //         console.log('2',searchParsedResponse.results[0])
-    //         const similarDrugResponse = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.generic_name.exact:${searchParsedResponse.results[0].openfda.generic_name}&limit=5`)
-    //         console.log('3', similarDrugResponse)
-    //         if(similarDrugResponse.status === 200){
-    //             const similarParsedResponse = await similarDrugResponse.json()
-    //             console.log('4', similarParsedResponse.results)
-    //             this.setState({
-    //                 selectedDrug: searchParsedResponse.results[0],
-    //                 noResults: false,
-    //                 showResults: false,
-    //                 showDrugInfo: true,
-    //                 similarDrugs: similarParsedResponse.results
-    //             })
-    //         }
-    //     }
-    // }
+    componentDidMount = () => {
+        this.getSavedMedicines()
+    }
+    getSavedMedicines = async () => {
+        try{
+            const medicinesResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            const parsedResponse = await medicinesResponse.json()
+            console.log(parsedResponse.data)
+            this.setState({
+                medicines: parsedResponse.data,
+                showSavedMedicine: true
+            })
+        } catch(err){
+            console.log(err)
+            this.setState({
+                medicines: 'Must be logged in to use this feature'
+            })
+        }
+    }
+    deleteMedicine = async (id) => {
+        const deleteMedicineResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/${id}/`, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        const deletedMedicineParsed = await deleteMedicineResponse.json()
+        console.log(deletedMedicineParsed);
+        this.setState({medicines: this.state.medicines.filter((medicine) => medicine.id !== id )})
+    }
+    updateTime = async (id) => {
+        const updateTimeResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/update_time/${id}`, {
+            method: 'PUT',
+            credentials: 'include'
+        })
+        const parsedResponse = await updateTimeResponse.json()
+        console.log('parsedResponse:',parsedResponse)
+        const updatedMedicines = this.state.medicines.map((medicine) => {
+            console.log('current medicine:',medicine)
+            if(medicine.id === parsedResponse.data.id) {
+                medicine = parsedResponse.data
+            }
+            return medicine
+        })
+        this.setState({
+            medicines: updatedMedicines,
+        })
+    }
+    openEditModal = async (medicineInfo) => {
+        console.log('medicineInfo:', medicineInfo)
+        console.log('brand_name:',medicineInfo.brand_name)
+        await this.setState({
+            editModal: true,
+            medicineToEdit: {
+                brand_name: medicineInfo.brand_name,
+                drug_id: medicineInfo.drug_id,
+                dosage: medicineInfo.dosage,
+                dosage_unit: medicineInfo.dosage_unit,
+                refill_needed: medicineInfo.refill_needed,
+                frequency_value: medicineInfo.frequency_value,
+                frequency_unit: medicineInfo.frequency_unit
+            }
+        })
+        console.log('medicine to edit:',this.state.medicineToEdit)
+    }
+    closeEditModal = () => {
+        this.setState({
+            editModal: false
+        })
+    }
+    submitEdit = async (id, newText) => {
+        const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/medicines/update/${id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(newText),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        console.log(editResponse)
+    }
     render(){
         return(
             <div>
-                {/* <NavBar /> */}
-                {/* <SearchBar searchRequest={this.searchRequest} handleEnter={this.onKeyPress}/> */}
                 <h1>Main body</h1>
-                {/* {this.state.showResults ? <ShowSearchResults searchResults={this.state.searchResults} showDrugInformation={this.getSelectedDrugInformation} /> : null} */}
-                {this.state.noResults ? <Message>{this.state.searchResults}</Message> : null}
-                {/* {this.state.showDrugInfo ? <SelectedDrug selectedDrug={this.state.selectedDrug} similarDrugs={this.state.similarDrugs} /> : null} */}
-                {/* <Footer /> */}
+                <Card centered>
+                    <Header>
+                        <h1 style={{textAlign: 'center'}}>Saved Medication</h1>
+                    </Header>
+                    <Card.Content>
+                        {this.state.showSavedMedicine ? <ShowSavedMedication savedMedicines={this.state.medicines} deleteMedicine={this.deleteMedicine} updateTime={this.updateTime} openEditModal={this.openEditModal}/> : null}
+                    </Card.Content>
+                </Card>
+                { this.state.editModal ? <EditSavedMedicineForm open={this.state.editModal} close={this.closeEditModal} currentMedicine={this.state.medicineToEdit} submitEdit={this.submitEdit}/> : null}
             </div>
         )
     }

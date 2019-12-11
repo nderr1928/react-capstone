@@ -45,7 +45,7 @@ class SelectedDrugPage extends React.Component{
     render(){
         return(
             <Card centered>
-                {this.state.showSelectedDrug ? <SelectedDrug result={this.state.result} /> : null}
+                {this.state.showSelectedDrug ? <SelectedDrug result={this.state.result} isLogged={this.props.isLogged}/> : null}
                 {this.state.showSimilarDrugs ? <SimilarDrugs similarDrugs={this.state.similarDrugs}/> : null}
             </Card>
         )

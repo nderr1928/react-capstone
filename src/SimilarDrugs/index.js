@@ -11,8 +11,8 @@ const SimilarDrugs = (props) => {
     })
     return(
         
-        <Card.Content extra>
-            <p>Similar products(based on <a href='https://www.goodrx.com/blog/brand-vs-generic-drugs-whats-the-difference/#:~:targetText=Due%20to%20trademark%20laws%2C%20generic,reflux%20disease%2C%20or%20GERD)'>generic name):</a></p>
+        <Card.Content>
+            <p>Similar products (based on <a href='https://www.goodrx.com/blog/brand-vs-generic-drugs-whats-the-difference/#:~:targetText=Due%20to%20trademark%20laws%2C%20generic,reflux%20disease%2C%20or%20GERD)' target='_blank' rel="noopener noreferrer">generic name</a>):</p>
             <ul>
                 {mappedSimilarDrugs}
             </ul>

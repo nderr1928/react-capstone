@@ -12,7 +12,7 @@ const ShowSearchResults = (props) => {
                     <Link to={{
                         pathname: `/${foundResult.id}`
                     }}>
-                        <Card key={foundResult.id} centered>
+                        <Card key={foundResult.openfda.spl_id} centered>
                             <Card.Content>
                                 {foundResult.openfda.brand_name}
                             </Card.Content>
