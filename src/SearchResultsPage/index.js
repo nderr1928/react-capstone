@@ -20,9 +20,9 @@ class SearchResultPage extends React.Component{
             if(searchString !== ''){
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
                 const parsedResponse = await response.json()
-                console.log('function', parsedResponse.results)
-                console.log('function length', parsedResponse.results.length)
-                if(parsedResponse.results.length > 0){
+                // console.log('function', parsedResponse.results)
+                // console.log('function length', parsedResponse.results.length)
+                if(parsedResponse.results.length){
                     this.setState({
                         response: parsedResponse.results,
                         showResults: true,
