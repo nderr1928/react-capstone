@@ -42,16 +42,21 @@ class SelectedDrug extends React.Component{
                     'Content-Type': 'application/json'
                 }
             })
-            // console.log(response)
-            // console.log('logged')
-            this.setState({
-                savedMsg: 'Medicine saved!',
-                isSaved: true,
-                errMsg: null,
-                saveModal: false
-            })
+            console.log(response)
+            const parsedResponse = await response.json()
+            console.log(parsedResponse)
+            if(parsedResponse.status.code === 201){
+                this.setState({
+                    savedMsg: 'Medicine saved!',
+                    isSaved: true,
+                    errMsg: null,
+                    saveModal: false
+                })
+            } else{
+                console.log('err')
+            }
         } catch(err){
-            // console.log(err)
+            console.log(err)
         }
     }
     alreadySavedMessage = () => {
