@@ -7,7 +7,8 @@ class SearchResultPage extends React.Component{
         this.state = {
             searchString: this.props.match.params.brand_name,
             response: '',
-            showResults: false
+            showResults: false,
+            noResults: false
         }
     }
     componentDidMount = () => {
@@ -20,10 +21,19 @@ class SearchResultPage extends React.Component{
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`)
                 const parsedResponse = await response.json()
                 // console.log('function', parsedResponse.results)
-                this.setState({
-                    response: parsedResponse.results,
-                    showResults: true
-                })
+                if(parsedResponse.results.length > 0){
+                    this.setState({
+                        response: parsedResponse.results,
+                        showResults: true,
+                        noResults: false
+                    })
+                } else{
+                    this.setState({
+                        response: '',
+                        showResults: false,
+                        noResults: true
+                    })
+                }
                 // console.log('search result:', this.state.response)
             } else{
                 this.setState({
@@ -40,6 +50,7 @@ class SearchResultPage extends React.Component{
             <React.Fragment>
                 <h1 style={{margin: '0'}}>Results from {this.state.searchString}</h1>
                 {this.state.showResults ? <ShowSearchResults searchResults={this.state.response} /> : null}
+                {this.state.noResults ? <h3>No reults found</h3>: null}
             </React.Fragment>
         )
     }
