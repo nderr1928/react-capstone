@@ -32,7 +32,7 @@ class App extends React.Component{
 	checkLogged = () => {
         // console.log(sessionStorage.getItem('sessionUserId').toString())
         // console.log(sessionStorage.getItem('sessionUserId').toString() !== 'null')
-        if(sessionStorage.getItem('sessionUserId').toString() !== 'null'){
+        if(sessionStorage.getItem('sessionUserId')){
 			this.setState({
 				isLogged: true
 			})
