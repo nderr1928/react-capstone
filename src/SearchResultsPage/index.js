@@ -19,7 +19,7 @@ class SearchResultPage extends React.Component{
             if(searchString !== ''){
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${searchString}`, {
                     header:{
-                        'Content-type': 'application.json'
+                        'Content-type': 'application/json'
                     }
                 })
                 const parsedResponse = await response.json()
