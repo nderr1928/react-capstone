@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const ShowSavedMedication = (props) => {
     // console.log('passed props', props.savedMedicines)
     const mappedMedicines = props.savedMedicines.map((medicine) => {
-        console.log('medicine:', medicine)
+        // console.log('medicine:', medicine)
         return(
             <Card key={medicine.id}>
                 <Header style={{margin: '0', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center'}}>

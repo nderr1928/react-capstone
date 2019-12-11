@@ -20,7 +20,7 @@ class SelectedDrug extends React.Component{
                 saveModal: true
             })
         } else{
-            console.log('not logged')
+            // console.log('not logged')
             this.setState({
                 errMsg: 'Must be logged in to use this feature.',
                 savedMsg: null
@@ -43,7 +43,7 @@ class SelectedDrug extends React.Component{
                 }
             })
             // console.log(response)
-            console.log('logged')
+            // console.log('logged')
             this.setState({
                 savedMsg: 'Medicine saved!',
                 isSaved: true,
@@ -51,11 +51,11 @@ class SelectedDrug extends React.Component{
                 saveModal: false
             })
         } catch(err){
-            console.log(err)
+            // console.log(err)
         }
     }
     alreadySavedMessage = () => {
-        console.log('already saved')
+        // console.log('already saved')
         this.setState({
             savedMsg: null,
             errMsg: 'Medicine already saved. To unsave, return to the homepage and remove it from your saved medication.'

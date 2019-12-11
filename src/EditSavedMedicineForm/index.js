@@ -11,7 +11,8 @@ class EditSavedMedicineForm extends React.Component{
             dosage_unit: props.currentMedicine.dosage_unit,
             refill_needed: props.currentMedicine.refill_needed,
             frequency_value: props.currentMedicine.frequency_value,
-            frequency_unit: props.currentMedicine.frequency_unit
+            frequency_unit: props.currentMedicine.frequency_unit,
+            id: props.currentMedicine.id 
         }
     }
     handleChange = (e) => {
@@ -20,12 +21,12 @@ class EditSavedMedicineForm extends React.Component{
         })
     } 
     componentDidMount = () => {
-        console.log("edit saved modal:",this.state)
+        // console.log("edit saved modal:",this.state)
     }
     render(){
         return(
             <Modal open={this.props.open}>
-                <Form onSubmit={() => this.props.submitEdit(this.state.drug_id, this.state)}>
+                <Form onSubmit={() => this.props.submitEdit(this.state.id, this.state)}>
                     <Header>
                         <Button
                         icon='close'

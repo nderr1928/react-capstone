@@ -18,7 +18,8 @@ class MainContainer extends React.Component{
                 dosage_unit: '',
                 refill_needed: '',
                 frequency_value: '',
-                frequency_unit: ''
+                frequency_unit: '',
+                id: ''
             }
         }
     }
@@ -35,13 +36,13 @@ class MainContainer extends React.Component{
                 }
             })
             const parsedResponse = await medicinesResponse.json()
-            console.log(parsedResponse.data)
+            // console.log(parsedResponse.data)
             this.setState({
                 medicines: parsedResponse.data,
                 showSavedMedicine: true
             })
         } catch(err){
-            console.log(err)
+            // console.log(err)
             this.setState({
                 medicines: 'Must be logged in to use this feature'
             })
@@ -53,7 +54,7 @@ class MainContainer extends React.Component{
             credentials: 'include'
         })
         const deletedMedicineParsed = await deleteMedicineResponse.json()
-        console.log(deletedMedicineParsed);
+        // console.log(deletedMedicineParsed);
         this.setState({medicines: this.state.medicines.filter((medicine) => medicine.id !== id )})
     }
     updateTime = async (id) => {
@@ -62,9 +63,9 @@ class MainContainer extends React.Component{
             credentials: 'include'
         })
         const parsedResponse = await updateTimeResponse.json()
-        console.log('parsedResponse:',parsedResponse)
+        // console.log('parsedResponse:',parsedResponse)
         const updatedMedicines = this.state.medicines.map((medicine) => {
-            console.log('current medicine:',medicine)
+            // console.log('current medicine:',medicine)
             if(medicine.id === parsedResponse.data.id) {
                 medicine = parsedResponse.data
             }
@@ -75,8 +76,8 @@ class MainContainer extends React.Component{
         })
     }
     openEditModal = async (medicineInfo) => {
-        console.log('medicineInfo:', medicineInfo)
-        console.log('brand_name:',medicineInfo.brand_name)
+        // console.log('medicineInfo:', medicineInfo)
+        // console.log('brand_name:',medicineInfo.brand_name)
         await this.setState({
             editModal: true,
             medicineToEdit: {
@@ -86,10 +87,11 @@ class MainContainer extends React.Component{
                 dosage_unit: medicineInfo.dosage_unit,
                 refill_needed: medicineInfo.refill_needed,
                 frequency_value: medicineInfo.frequency_value,
-                frequency_unit: medicineInfo.frequency_unit
+                frequency_unit: medicineInfo.frequency_unit,
+                id: medicineInfo.id
             }
         })
-        console.log('medicine to edit:',this.state.medicineToEdit)
+        // console.log('medicine to edit:',this.state.medicineToEdit)
     }
     closeEditModal = () => {
         this.setState({
@@ -105,7 +107,20 @@ class MainContainer extends React.Component{
                 'Content-type': 'application/json'
             }
         })
-        console.log(editResponse)
+        // console.log(editResponse)
+        const parsedResponse = await editResponse.json()
+        // console.log(parsedResponse)
+        const updatedMedicines = this.state.medicines.map((medicine) => {
+            // console.log('current medicine:',medicine)
+            if(medicine.id === parsedResponse.data.id) {
+                medicine = parsedResponse.data
+            }
+            return medicine
+        })
+        this.setState({
+            medicines: updatedMedicines
+        })
+        this.closeEditModal()
     }
     render(){
         return(
