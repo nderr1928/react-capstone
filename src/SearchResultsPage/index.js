@@ -51,7 +51,7 @@ class SearchResultPage extends React.Component{
             <React.Fragment>
                 <h1 style={{margin: '0'}}>Results from {this.state.searchString}</h1>
                 {this.state.showResults ? <ShowSearchResults searchResults={this.state.response} /> : null}
-                {this.state.noResults ? <h3>No reults found</h3>: null}
+                {this.state.noResults ? <h3>No results found</h3>: null}
             </React.Fragment>
         )
     }

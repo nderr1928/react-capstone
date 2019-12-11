@@ -42,9 +42,9 @@ class SelectedDrug extends React.Component{
                     'Content-Type': 'application/json'
                 }
             })
-            console.log(response)
+            // console.log(response)
             const parsedResponse = await response.json()
-            console.log(parsedResponse)
+            // console.log(parsedResponse)
             if(parsedResponse.status.code === 201){
                 this.setState({
                     savedMsg: 'Medicine saved!',
