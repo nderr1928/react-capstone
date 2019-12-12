@@ -37,8 +37,7 @@ User story:
   keeping track of when a medication was last taken
 
 Wireframe: 
-  To be added in public folder
-  (not in as of writing this))
+  In public folder under wireframes folder
 
 Pages
     Search (Don't need to be logged in):
