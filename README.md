@@ -76,7 +76,23 @@ Pages
                 - Button to unsave medicine (if someone stops taking it)
         - Not logged in:
             - Empty saved box for saved medicines saying to login
-            
+           
+ Future fixes/implmentations:
+  Adding twilio api
+  Fix bug where search page doesn't refresh while on the search page
+  Add all calls to api from front end to the back end
+  Get the medicine save button to show up as saved if that medicine is already saved in database
+  Add refill needed and quantity reamining to the saved medication
+  Add more to the home page
+  Complete pages to the footers
+  Get the footer to always be on the bottom of the screen no matter the container size (change height of all
+    rendered components)
+   On logout, have all information regarding th elast user to go away
+   Have messages pop up when not logged in (use of states and turnary operators)
+   Make a more fun 404 page
+   
+  
+  
 
    
      
