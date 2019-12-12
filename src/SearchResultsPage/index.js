@@ -13,6 +13,7 @@ class SearchResultPage extends React.Component{
     }
     componentDidMount = () => {
         this.searchRequest(this.state.searchString)
+        // this.forceUpdate()
         // console.log('search querry:',this.state.searchString)
     }
     searchRequest = async (searchString) => {
